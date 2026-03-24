@@ -1,0 +1,7 @@
+aid: teledyne-technologies
+url: https://raw.githubusercontent.com/api-evangelist/teledyne-technologies/refs/heads/main/apis.yml
+modified: '2026-03-24'
+apis: []
+common:
+  - type: Website
+    url: https://www.teledyne-technologies.com
