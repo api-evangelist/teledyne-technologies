@@ -1,0 +1,95 @@
+extends:
+  - spectral:oas
+
+rules:
+  teledyne-operation-ids-camel-case:
+    description: Operation IDs must use camelCase naming convention.
+    message: "Operation ID '{{value}}' must use camelCase."
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  teledyne-operations-have-summaries:
+    description: All operations must have a summary.
+    message: "Operation must include a summary."
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: summary
+      function: truthy
+
+  teledyne-title-case-summaries:
+    description: Operation summaries must use Title Case.
+    message: "Summary '{{value}}' should use Title Case."
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9 ]*$"
+
+  teledyne-operations-have-tags:
+    description: All operations must be tagged.
+    message: "Operation must have at least one tag."
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  teledyne-responses-have-descriptions:
+    description: All responses must have descriptions.
+    message: "Response must include a description."
+    severity: error
+    given: "$.paths[*][*].responses[*]"
+    then:
+      field: description
+      function: truthy
+
+  teledyne-servers-defined:
+    description: API must define at least one server.
+    message: "API must include a servers array with at least one entry."
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+
+  teledyne-path-parameters-described:
+    description: All path parameters must have descriptions.
+    message: "Path parameter must include a description."
+    severity: warn
+    given: "$.paths[*][*].parameters[?(@.in === 'path')]"
+    then:
+      field: description
+      function: truthy
+
+  teledyne-json-responses-defined:
+    description: JSON-returning endpoints must define response schemas.
+    message: "JSON response should define a schema."
+    severity: warn
+    given: "$.paths[*][*].responses[200].content.application/json"
+    then:
+      field: schema
+      function: truthy
+
+  teledyne-temp-unit-enum:
+    description: Temperature unit parameters should use standard C/F/K enum.
+    message: "Temperature unit should be one of: C, F, K."
+    severity: hint
+    given: "$.paths[*][*].parameters[?(@.name === 'tempUnit')]"
+    then:
+      field: schema
+      function: truthy
+
+  teledyne-components-schemas:
+    description: API must define reusable schemas.
+    message: "API should define schemas in components/schemas."
+    severity: warn
+    given: "$.components"
+    then:
+      field: schemas
+      function: truthy

@@ -1,0 +1,195 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Teledyne FLIR Industrial Thermal Monitoring"
+  description: >-
+    Industrial thermal monitoring capability using Teledyne FLIR automation
+    cameras. Enables continuous temperature monitoring, alarm management,
+    and predictive maintenance workflows for manufacturing, electrical
+    infrastructure, process plants, and building inspection applications.
+    Combines real-time thermal imaging with ROI measurement and alarm
+    monitoring via the FLIR Camera REST API.
+  tags:
+    - Teledyne FLIR
+    - Thermal Monitoring
+    - Industrial Automation
+    - Predictive Maintenance
+    - Process Monitoring
+    - Machine Vision
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      FLIR_CAMERA_IP: FLIR_CAMERA_IP
+
+capability:
+  consumes:
+    - import: flir-camera
+      location: ./shared/flir-camera-rest.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: thermal-monitoring-api
+      description: "Unified REST API for Teledyne FLIR industrial thermal monitoring."
+      resources:
+        - path: /v1/images/current
+          name: current-image
+          description: "Current thermal camera image."
+          operations:
+            - method: GET
+              name: get-current-image
+              description: "Capture current thermal image in the specified format."
+              call: "flir-camera.get-current-image"
+              with:
+                imgformat: "rest.imgformat"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/measurements/spots/{instance}
+          name: spot-measurement
+          description: "Spot temperature measurement."
+          operations:
+            - method: GET
+              name: get-spot-measurement
+              description: "Get spot temperature measurement."
+              call: "flir-camera.get-spot-measurement"
+              with:
+                instance: "rest.instance"
+                tempUnit: "rest.tempUnit"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/measurements/boxes/{instance}
+          name: box-measurement
+          description: "Box ROI temperature statistics."
+          operations:
+            - method: GET
+              name: get-box-measurement
+              description: "Get box ROI temperature statistics."
+              call: "flir-camera.get-box-measurement"
+              with:
+                instance: "rest.instance"
+                tempUnit: "rest.tempUnit"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/measurements/lines/{instance}
+          name: line-measurement
+          description: "Line profile temperature measurements."
+          operations:
+            - method: GET
+              name: get-line-measurement
+              description: "Get line profile temperature measurements."
+              call: "flir-camera.get-line-measurement"
+              with:
+                instance: "rest.instance"
+                tempUnit: "rest.tempUnit"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/alarms
+          name: alarms
+          description: "Camera alarm states."
+          operations:
+            - method: GET
+              name: get-all-alarms
+              description: "Get all camera alarm states."
+              call: "flir-camera.get-all-alarms"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/alarms/{instance}
+          name: alarm
+          description: "Specific alarm state."
+          operations:
+            - method: GET
+              name: get-alarm
+              description: "Get a specific camera alarm state."
+              call: "flir-camera.get-alarm"
+              with:
+                instance: "rest.instance"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: thermal-monitoring-mcp
+      transport: http
+      description: "MCP server for AI-assisted FLIR industrial thermal monitoring."
+      tools:
+        - name: capture-thermal-image
+          description: "Capture a current thermal image from a FLIR automation camera. Use imgformat=RJPEG for radiometric data."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "flir-camera.get-current-image"
+          with:
+            imgformat: "tools.imgformat"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: read-spot-temperature
+          description: "Read the current temperature at a specific spot measurement point on the FLIR camera."
+          hints:
+            readOnly: true
+          call: "flir-camera.get-spot-measurement"
+          with:
+            instance: "tools.instance"
+            tempUnit: "tools.tempUnit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: read-box-temperature-stats
+          description: "Read min, max, and average temperature statistics for a box region of interest on the FLIR camera."
+          hints:
+            readOnly: true
+          call: "flir-camera.get-box-measurement"
+          with:
+            instance: "tools.instance"
+            tempUnit: "tools.tempUnit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: read-line-temperature-profile
+          description: "Read the temperature profile across a line region of interest for thermal gradient analysis."
+          hints:
+            readOnly: true
+          call: "flir-camera.get-line-measurement"
+          with:
+            instance: "tools.instance"
+            tempUnit: "tools.tempUnit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: check-all-alarms
+          description: "Check the state of all configured temperature alarms on the FLIR camera."
+          hints:
+            readOnly: true
+          call: "flir-camera.get-all-alarms"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: check-alarm
+          description: "Check whether a specific temperature alarm is triggered on the FLIR camera."
+          hints:
+            readOnly: true
+          call: "flir-camera.get-alarm"
+          with:
+            instance: "tools.instance"
+          outputParameters:
+            - type: object
+              mapping: "$."

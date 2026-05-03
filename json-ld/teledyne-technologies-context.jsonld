@@ -1,0 +1,41 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "teledyne": "https://www.teledyne.com/",
+
+    "ThermalMeasurement": "sosa:Observation",
+    "name": "schema:name",
+    "temperature": "qudt:numericValue",
+    "unit": "qudt:unit",
+    "timestamp": "sosa:resultTime",
+    "x": "schema:xPosition",
+    "y": "schema:yPosition",
+
+    "SpotMeasurement": "sosa:Observation",
+    "BoxMeasurement": "sosa:Observation",
+    "LineMeasurement": "sosa:Observation",
+
+    "max": "schema:maxValue",
+    "min": "schema:minValue",
+    "avg": "schema:value",
+    "area": "schema:spatialCoverage",
+    "width": "schema:width",
+    "height": "schema:height",
+    "points": "schema:value",
+
+    "Alarm": "sosa:Actuation",
+    "instance": "schema:identifier",
+    "state": "schema:status",
+    "triggered": "schema:active",
+    "threshold": "qudt:numericValue",
+    "associatedROI": "sosa:hasFeatureOfInterest",
+
+    "ThermalCamera": "schema:Product",
+    "imgformat": "schema:encodingFormat",
+
+    "ROI": "schema:spatialCoverage"
+  }
+}

@@ -1,0 +1,389 @@
+openapi: 3.0.3
+info:
+  title: Teledyne FLIR Camera REST API
+  description: >-
+    The Teledyne FLIR Camera REST API provides programmatic access to FLIR
+    automation cameras (A50/A70, A400/A500/A700, Ax8 series) for retrieving
+    thermal images, temperature measurements, region of interest (ROI) data,
+    alarm states, and camera configuration. The API is accessed directly on
+    the camera's local IP address. Supports industrial process monitoring,
+    predictive maintenance, building inspection, and automated quality control.
+  version: 1.0.0
+  contact:
+    url: https://www.flir.com/support-center/Instruments/restful-api-exercise/
+  license:
+    name: Proprietary
+    url: https://www.flir.com/
+servers:
+  - url: http://{cameraIp}/api
+    description: FLIR Camera REST API (local network access)
+    variables:
+      cameraIp:
+        default: 192.168.0.100
+        description: IP address of the FLIR automation camera on the local network.
+paths:
+  /image/current:
+    get:
+      operationId: getCurrentImage
+      summary: Get Current Image
+      description: Retrieve the current thermal image from the camera in the specified format.
+      tags:
+        - Images
+      parameters:
+        - name: imgformat
+          in: query
+          description: Image format to return.
+          required: false
+          schema:
+            type: string
+            enum:
+              - JPEG
+              - RJPEG
+              - FLAME
+              - VISIBLE
+              - FUSION
+            default: JPEG
+        - name: width
+          in: query
+          description: Output image width in pixels.
+          required: false
+          schema:
+            type: integer
+        - name: height
+          in: query
+          description: Output image height in pixels.
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Current camera image.
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Camera not accessible.
+  /spot/{instance}.json:
+    get:
+      operationId: getSpotMeasurement
+      summary: Get Spot Measurement
+      description: Retrieve temperature measurement data for a specific spot ROI instance.
+      tags:
+        - Measurements
+      parameters:
+        - name: instance
+          in: path
+          description: Spot ROI instance number (1-indexed).
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - name: pretty
+          in: query
+          description: Format JSON response with indentation.
+          required: false
+          schema:
+            type: boolean
+        - name: tempUnit
+          in: query
+          description: Temperature unit for readings.
+          required: false
+          schema:
+            type: string
+            enum:
+              - C
+              - F
+              - K
+            default: C
+      responses:
+        '200':
+          description: Spot temperature measurement data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpotMeasurement'
+  /box/{instance}.json:
+    get:
+      operationId: getBoxMeasurement
+      summary: Get Box Measurement
+      description: Retrieve temperature statistics for a rectangular region of interest.
+      tags:
+        - Measurements
+      parameters:
+        - name: instance
+          in: path
+          description: Box ROI instance number.
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - name: tempUnit
+          in: query
+          description: Temperature unit.
+          required: false
+          schema:
+            type: string
+            enum:
+              - C
+              - F
+              - K
+            default: C
+      responses:
+        '200':
+          description: Box region of interest temperature statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoxMeasurement'
+  /line/{instance}.json:
+    get:
+      operationId: getLineMeasurement
+      summary: Get Line Measurement
+      description: Retrieve temperature measurements along a line ROI.
+      tags:
+        - Measurements
+      parameters:
+        - name: instance
+          in: path
+          description: Line ROI instance number.
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - name: tempUnit
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - C
+              - F
+              - K
+            default: C
+      responses:
+        '200':
+          description: Line region of interest temperature profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LineMeasurement'
+  /alarms:
+    get:
+      operationId: getAllAlarms
+      summary: Get All Alarms
+      description: Retrieve the current state of all configured alarm conditions on the camera.
+      tags:
+        - Alarms
+      parameters:
+        - name: pretty
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: All camera alarm states.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alarms:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Alarm'
+  /alarm/{instance}.json:
+    get:
+      operationId: getAlarm
+      summary: Get Alarm
+      description: Retrieve the state of a specific alarm instance.
+      tags:
+        - Alarms
+      parameters:
+        - name: instance
+          in: path
+          description: Alarm instance number.
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+      responses:
+        '200':
+          description: Alarm state data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Alarm'
+  /tempsensor/{instance}.json:
+    get:
+      operationId: getTemperatureSensor
+      summary: Get Temperature Sensor
+      description: Retrieve data from an internal temperature sensor instance.
+      tags:
+        - Measurements
+      parameters:
+        - name: instance
+          in: path
+          description: Temperature sensor instance number.
+          required: true
+          schema:
+            type: integer
+            minimum: 1
+        - name: tempUnit
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - C
+              - F
+              - K
+            default: C
+      responses:
+        '200':
+          description: Temperature sensor data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TemperatureSensor'
+components:
+  schemas:
+    SpotMeasurement:
+      type: object
+      description: Temperature measurement data for a spot ROI.
+      properties:
+        name:
+          type: string
+          description: Spot ROI name.
+        temperature:
+          type: number
+          format: double
+          description: Temperature at the spot location.
+        unit:
+          type: string
+          description: Temperature unit (C, F, or K).
+        x:
+          type: integer
+          description: X coordinate of the spot in the image.
+        y:
+          type: integer
+          description: Y coordinate of the spot in the image.
+        timestamp:
+          type: string
+          format: date-time
+          description: Measurement timestamp.
+    BoxMeasurement:
+      type: object
+      description: Temperature statistics for a rectangular region of interest.
+      properties:
+        name:
+          type: string
+          description: Box ROI name.
+        max:
+          type: number
+          format: double
+          description: Maximum temperature in the box region.
+        min:
+          type: number
+          format: double
+          description: Minimum temperature in the box region.
+        avg:
+          type: number
+          format: double
+          description: Average temperature in the box region.
+        unit:
+          type: string
+          description: Temperature unit (C, F, or K).
+        area:
+          type: object
+          description: Box coordinates in the image.
+          properties:
+            x:
+              type: integer
+            y:
+              type: integer
+            width:
+              type: integer
+            height:
+              type: integer
+        timestamp:
+          type: string
+          format: date-time
+    LineMeasurement:
+      type: object
+      description: Temperature profile along a line ROI.
+      properties:
+        name:
+          type: string
+          description: Line ROI name.
+        max:
+          type: number
+          format: double
+          description: Maximum temperature along the line.
+        min:
+          type: number
+          format: double
+          description: Minimum temperature along the line.
+        avg:
+          type: number
+          format: double
+          description: Average temperature along the line.
+        unit:
+          type: string
+        points:
+          type: array
+          description: Temperature values at each point along the line.
+          items:
+            type: number
+            format: double
+        timestamp:
+          type: string
+          format: date-time
+    Alarm:
+      type: object
+      description: A configured alarm condition on the FLIR camera.
+      properties:
+        instance:
+          type: integer
+          description: Alarm instance number.
+        name:
+          type: string
+          description: Alarm name.
+        state:
+          type: string
+          description: Current alarm state.
+          enum:
+            - active
+            - inactive
+            - acknowledged
+        triggered:
+          type: boolean
+          description: Whether the alarm condition is currently triggered.
+        threshold:
+          type: number
+          format: double
+          description: Temperature threshold that triggers the alarm.
+        unit:
+          type: string
+          description: Temperature unit.
+        associatedROI:
+          type: string
+          description: The ROI associated with this alarm.
+    TemperatureSensor:
+      type: object
+      description: Internal temperature sensor data.
+      properties:
+        instance:
+          type: integer
+        name:
+          type: string
+        temperature:
+          type: number
+          format: double
+        unit:
+          type: string
+        timestamp:
+          type: string
+          format: date-time

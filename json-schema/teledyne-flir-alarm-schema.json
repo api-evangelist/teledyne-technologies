@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/teledyne-technologies/main/json-schema/teledyne-flir-alarm-schema.json",
+  "title": "Teledyne FLIR Camera Alarm",
+  "description": "A temperature alarm configured on a Teledyne FLIR automation camera.",
+  "type": "object",
+  "properties": {
+    "instance": {
+      "type": "integer",
+      "description": "Alarm instance number.",
+      "minimum": 1
+    },
+    "name": {
+      "type": "string",
+      "description": "Alarm name."
+    },
+    "state": {
+      "type": "string",
+      "enum": ["active", "inactive", "acknowledged"],
+      "description": "Current alarm state."
+    },
+    "triggered": {
+      "type": "boolean",
+      "description": "Whether the alarm condition is currently triggered."
+    },
+    "threshold": {
+      "type": "number",
+      "format": "double",
+      "description": "Temperature threshold that triggers the alarm."
+    },
+    "unit": {
+      "type": "string",
+      "enum": ["C", "F", "K"],
+      "description": "Temperature unit for the threshold."
+    },
+    "associatedROI": {
+      "type": "string",
+      "description": "The ROI (spot, box, line) associated with this alarm."
+    }
+  },
+  "required": ["instance", "name", "state", "triggered"]
+}

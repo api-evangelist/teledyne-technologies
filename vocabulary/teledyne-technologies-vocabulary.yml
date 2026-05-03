@@ -1,0 +1,141 @@
+vocabulary:
+  provider: Teledyne Technologies
+  description: >-
+    Vocabulary for Teledyne Technologies and its subsidiaries including
+    Teledyne FLIR, Teledyne LeCroy, and Teledyne Imaging, covering thermal
+    imaging, machine vision, test and measurement, and industrial automation domains.
+  version: '2026-05-03'
+  terms:
+    - term: Teledyne FLIR
+      definition: >-
+        Teledyne Technologies' thermal imaging subsidiary producing cameras,
+        detectors, and systems for defense, industrial, scientific, and
+        commercial applications. Previously FLIR Systems before acquisition
+        by Teledyne in 2021.
+      synonyms:
+        - FLIR Systems
+        - FLIR
+      relatedTerms:
+        - Thermal Imaging
+        - Infrared Camera
+
+    - term: Thermal Imaging
+      definition: >-
+        The use of infrared radiation detection to produce images representing
+        temperature distributions. Teledyne FLIR cameras detect thermal radiation
+        (8-14 micrometer wavelength) and convert it to visible temperature maps.
+      synonyms:
+        - Infrared Imaging
+        - IR Imaging
+        - Thermography
+      relatedTerms:
+        - Teledyne FLIR
+        - ROI
+
+    - term: ROI
+      definition: >-
+        Region of Interest - a defined area within a thermal camera's field of
+        view used to measure temperature. FLIR automation cameras support spot,
+        box, line, polyline, and delta ROI types.
+      synonyms:
+        - Region of Interest
+        - Measurement Area
+      relatedTerms:
+        - Spot Measurement
+        - Box Measurement
+        - Line Measurement
+
+    - term: Spot Measurement
+      definition: >-
+        A single-pixel or small-area temperature measurement at a specific
+        coordinate within the thermal camera's image. Returns the temperature
+        at that precise point.
+      relatedTerms:
+        - ROI
+        - Box Measurement
+
+    - term: Box Measurement
+      definition: >-
+        Temperature statistics (min, max, average) calculated across a
+        rectangular region of interest in the thermal camera image.
+      synonyms:
+        - Area Measurement
+      relatedTerms:
+        - ROI
+        - Spot Measurement
+
+    - term: Radiometric JPEG
+      definition: >-
+        A JPEG image format used by Teledyne FLIR cameras that stores
+        calibrated temperature data alongside the visible image data,
+        enabling post-processing temperature analysis from the image file.
+      synonyms:
+        - RJPEG
+        - Radiometric Image
+      relatedTerms:
+        - Thermal Imaging
+
+    - term: Spinnaker SDK
+      definition: >-
+        Teledyne FLIR's machine vision camera SDK providing cross-platform
+        C++, C#, Python, and Java APIs for controlling machine vision cameras
+        over USB3, GigE, and 5GigE interfaces.
+      synonyms:
+        - Spinnaker
+      relatedTerms:
+        - Machine Vision
+        - GenICam
+
+    - term: GenICam
+      definition: >-
+        Generic Interface for Cameras - the industry standard for camera
+        control and configuration, implemented by Teledyne FLIR and DALSA
+        machine vision cameras and supported by the Spinnaker SDK.
+      synonyms:
+        - Generic Interface for Cameras
+      relatedTerms:
+        - Spinnaker SDK
+
+    - term: Teledyne LeCroy
+      definition: >-
+        Teledyne Technologies' test and measurement subsidiary producing
+        oscilloscopes, protocol analyzers, and signal integrity tools.
+        Provides ActiveDSO and MAUI automation APIs for remote control.
+      synonyms:
+        - LeCroy
+      relatedTerms:
+        - SCPI
+        - ActiveDSO
+
+    - term: SCPI
+      definition: >-
+        Standard Commands for Programmable Instruments - the IEEE standard
+        command language used by Teledyne LeCroy oscilloscopes for remote
+        control over VISA, GPIB, Ethernet, and USBTMC interfaces.
+      synonyms:
+        - Standard Commands for Programmable Instruments
+      relatedTerms:
+        - Teledyne LeCroy
+        - ActiveDSO
+
+    - term: ActiveDSO
+      definition: >-
+        Teledyne LeCroy's ActiveX/COM control enabling programmatic automation
+        of MAUI oscilloscopes from Windows applications using Python, C++,
+        C#, LabVIEW, or MATLAB.
+      relatedTerms:
+        - SCPI
+        - Teledyne LeCroy
+
+    - term: Predictive Maintenance
+      definition: >-
+        An industrial application of Teledyne FLIR thermal cameras where
+        continuous temperature monitoring detects anomalies (overheating
+        equipment, failing components) before failures occur.
+      synonyms:
+        - PdM
+        - Condition Monitoring
+      relatedTerms:
+        - Thermal Imaging
+        - ROI
+        - Alarm

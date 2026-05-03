@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/teledyne-technologies/main/json-schema/teledyne-flir-measurement-schema.json",
+  "title": "Teledyne FLIR Temperature Measurement",
+  "description": "Temperature measurement data from a Teledyne FLIR automation camera ROI (spot, box, or line).",
+  "oneOf": [
+    {
+      "title": "Spot Measurement",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Spot ROI name." },
+        "temperature": { "type": "number", "format": "double", "description": "Temperature at the spot." },
+        "unit": { "type": "string", "enum": ["C", "F", "K"] },
+        "x": { "type": "integer" },
+        "y": { "type": "integer" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "temperature", "unit"]
+    },
+    {
+      "title": "Box Measurement",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "max": { "type": "number", "format": "double" },
+        "min": { "type": "number", "format": "double" },
+        "avg": { "type": "number", "format": "double" },
+        "unit": { "type": "string", "enum": ["C", "F", "K"] },
+        "area": {
+          "type": "object",
+          "properties": {
+            "x": { "type": "integer" },
+            "y": { "type": "integer" },
+            "width": { "type": "integer" },
+            "height": { "type": "integer" }
+          }
+        },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "max", "min", "avg", "unit"]
+    }
+  ]
+}

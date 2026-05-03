@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "http://192.168.0.100/api/spot/1.json",
+    "parameters": {
+      "pretty": true,
+      "tempUnit": "C"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "name": "Spot1",
+      "temperature": 47.3,
+      "unit": "C",
+      "x": 320,
+      "y": 240,
+      "timestamp": "2026-04-28T14:30:00Z"
+    }
+  }
+}

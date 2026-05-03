@@ -1,0 +1,29 @@
+{
+  "title": "Teledyne FLIR Temperature Measurement Structure",
+  "description": "Field documentation for FLIR camera temperature measurement objects.",
+  "variants": [
+    {
+      "type": "SpotMeasurement",
+      "fields": [
+        {"name": "name", "type": "string", "required": true, "description": "Configured spot ROI name."},
+        {"name": "temperature", "type": "number", "required": true, "description": "Temperature reading at the spot location."},
+        {"name": "unit", "type": "string (enum)", "required": true, "description": "Temperature unit: C, F, or K.", "values": ["C", "F", "K"]},
+        {"name": "x", "type": "integer", "required": false, "description": "X pixel coordinate of the spot."},
+        {"name": "y", "type": "integer", "required": false, "description": "Y pixel coordinate of the spot."},
+        {"name": "timestamp", "type": "string (date-time)", "required": false, "description": "UTC timestamp of the measurement."}
+      ]
+    },
+    {
+      "type": "BoxMeasurement",
+      "fields": [
+        {"name": "name", "type": "string", "required": true, "description": "Configured box ROI name."},
+        {"name": "max", "type": "number", "required": true, "description": "Maximum temperature in the box region."},
+        {"name": "min", "type": "number", "required": true, "description": "Minimum temperature in the box region."},
+        {"name": "avg", "type": "number", "required": true, "description": "Average temperature in the box region."},
+        {"name": "unit", "type": "string (enum)", "required": true, "description": "Temperature unit: C, F, or K."},
+        {"name": "area", "type": "object", "required": false, "description": "Pixel coordinates: x, y, width, height."},
+        {"name": "timestamp", "type": "string (date-time)", "required": false, "description": "UTC timestamp of the measurement."}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "http://192.168.0.100/api/alarms",
+    "parameters": {
+      "pretty": true
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "alarms": [
+        {
+          "instance": 1,
+          "name": "HighTempAlarm",
+          "state": "active",
+          "triggered": true,
+          "threshold": 75.0,
+          "unit": "C",
+          "associatedROI": "Box1"
+        },
+        {
+          "instance": 2,
+          "name": "CriticalTempAlarm",
+          "state": "inactive",
+          "triggered": false,
+          "threshold": 100.0,
+          "unit": "C",
+          "associatedROI": "Spot1"
+        }
+      ]
+    }
+  }
+}

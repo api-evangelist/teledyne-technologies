@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "http://192.168.0.100/api/box/1.json",
+    "parameters": {
+      "pretty": true,
+      "tempUnit": "C"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "name": "Box1",
+      "max": 78.4,
+      "min": 23.1,
+      "avg": 45.7,
+      "unit": "C",
+      "area": {
+        "x": 100,
+        "y": 80,
+        "width": 200,
+        "height": 150
+      },
+      "timestamp": "2026-04-28T14:30:01Z"
+    }
+  }
+}
