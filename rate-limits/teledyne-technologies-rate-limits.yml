@@ -4,7 +4,8 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Teledyne Technologies
 providerId: teledyne-technologies
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
   - Aerospace
   - Defense
@@ -14,93 +15,28 @@ tags:
   - Test and Measurement
   - Fortune 500
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Teledyne Technologies API surface. Captures
-  per-tier quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values
-  to be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
-responseCodes:
-  throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+description: Teledyne's developer surface is dominated by on-device SDKs (FLIR Spinnaker / Atlas,
+  LeCroy ActiveDSO, VISA) that talk directly to instrument hardware. There is no published cloud
+  API rate limit because the integration is local-bus / network-direct rather than a public REST
+  service.
+sources:
+  - https://www.teledyne.com/
+  - https://www.flir.com/
+notes: Teledyne does not publish web-API rate limits. SDK throughput is governed by hardware /
+  bus / instrument constraints (USB, GigE Vision, GPIB, LXI, USB-TMC) rather than provider-side
+  request quotas.
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Teledyne FLIR Camera REST API
-      - Teledyne FLIR Spinnaker SDK
-      - Teledyne FLIR Mobile SDK
-      - Teledyne LeCroy ActiveDSO API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Teledyne FLIR Camera REST API
-      - Teledyne FLIR Spinnaker SDK
-      - Teledyne FLIR Mobile SDK
-      - Teledyne LeCroy ActiveDSO API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Teledyne FLIR Camera REST API
-      - Teledyne FLIR Spinnaker SDK
-      - Teledyne FLIR Mobile SDK
-      - Teledyne LeCroy ActiveDSO API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Teledyne FLIR Camera REST API
-      - Teledyne FLIR Spinnaker SDK
-      - Teledyne FLIR Mobile SDK
-      - Teledyne LeCroy ActiveDSO API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Teledyne FLIR Camera REST API
-      - Teledyne FLIR Spinnaker SDK
-      - Teledyne FLIR Mobile SDK
-      - Teledyne LeCroy ActiveDSO API
+  - name: Hardware / Bus Constrained
+    scope: instrument
+    metric: varies
+    limit: see device datasheet
+    notes: Effective rates are bounded by the instrument firmware, the connection bus (USB / GigE /
+      LXI / GPIB), and the SDK design rather than a cloud-side throttle.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: SDK-Local Operation
+    description: SDKs operate against local or networked instruments; throttling concepts (429,
+      Retry-After, etc.) do not apply. Concurrency is bounded by the hardware and the host
+      application.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
