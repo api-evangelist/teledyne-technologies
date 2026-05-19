@@ -1,0 +1,117 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Teledyne FLIR Camera REST API — Alarms
+  description: 'Teledyne FLIR Camera REST API — Alarms. 2 operations. Lead operation: Get Alarm. Self-contained Naftiko capability
+    covering one Teledyne Technologies business surface.'
+  tags:
+  - Teledyne Technologies
+  - Alarms
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TELEDYNE_TECHNOLOGIES_API_KEY: TELEDYNE_TECHNOLOGIES_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: teledyne-flir-camera-rest-alarms
+    baseUri: http://{cameraIp}/api
+    description: Teledyne FLIR Camera REST API — Alarms business capability. Self-contained, no shared references.
+    resources:
+    - name: alarm-instance}.json
+      path: /alarm/{instance}.json
+      operations:
+      - name: getalarm
+        method: GET
+        description: Get Alarm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: instance
+          in: path
+          type: integer
+          description: Alarm instance number.
+          required: true
+    - name: alarms
+      path: /alarms
+      operations:
+      - name: getallalarms
+        method: GET
+        description: Get All Alarms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pretty
+          in: query
+          type: boolean
+  exposes:
+  - type: rest
+    namespace: teledyne-flir-camera-rest-alarms-rest
+    port: 8080
+    description: REST adapter for Teledyne FLIR Camera REST API — Alarms. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/alarm/instance-json
+      name: alarm-instance-json
+      description: REST surface for alarm-instance}.json.
+      operations:
+      - method: GET
+        name: getalarm
+        description: Get Alarm
+        call: teledyne-flir-camera-rest-alarms.getalarm
+        with:
+          instance: rest.instance
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/alarms
+      name: alarms
+      description: REST surface for alarms.
+      operations:
+      - method: GET
+        name: getallalarms
+        description: Get All Alarms
+        call: teledyne-flir-camera-rest-alarms.getallalarms
+        with:
+          pretty: rest.pretty
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: teledyne-flir-camera-rest-alarms-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Teledyne FLIR Camera REST API — Alarms. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-alarm
+      description: Get Alarm
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: teledyne-flir-camera-rest-alarms.getalarm
+      with:
+        instance: tools.instance
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-all-alarms
+      description: Get All Alarms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: teledyne-flir-camera-rest-alarms.getallalarms
+      with:
+        pretty: tools.pretty
+      outputParameters:
+      - type: object
+        mapping: $.

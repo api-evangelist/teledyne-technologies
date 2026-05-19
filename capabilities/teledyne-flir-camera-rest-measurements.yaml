@@ -1,0 +1,231 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Teledyne FLIR Camera REST API — Measurements
+  description: 'Teledyne FLIR Camera REST API — Measurements. 4 operations. Lead operation: Get Box Measurement. Self-contained
+    Naftiko capability covering one Teledyne Technologies business surface.'
+  tags:
+  - Teledyne Technologies
+  - Measurements
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TELEDYNE_TECHNOLOGIES_API_KEY: TELEDYNE_TECHNOLOGIES_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: teledyne-flir-camera-rest-measurements
+    baseUri: http://{cameraIp}/api
+    description: Teledyne FLIR Camera REST API — Measurements business capability. Self-contained, no shared references.
+    resources:
+    - name: box-instance}.json
+      path: /box/{instance}.json
+      operations:
+      - name: getboxmeasurement
+        method: GET
+        description: Get Box Measurement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: instance
+          in: path
+          type: integer
+          description: Box ROI instance number.
+          required: true
+        - name: tempUnit
+          in: query
+          type: string
+          description: Temperature unit.
+    - name: line-instance}.json
+      path: /line/{instance}.json
+      operations:
+      - name: getlinemeasurement
+        method: GET
+        description: Get Line Measurement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: instance
+          in: path
+          type: integer
+          description: Line ROI instance number.
+          required: true
+        - name: tempUnit
+          in: query
+          type: string
+    - name: spot-instance}.json
+      path: /spot/{instance}.json
+      operations:
+      - name: getspotmeasurement
+        method: GET
+        description: Get Spot Measurement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: instance
+          in: path
+          type: integer
+          description: Spot ROI instance number (1-indexed).
+          required: true
+        - name: pretty
+          in: query
+          type: boolean
+          description: Format JSON response with indentation.
+        - name: tempUnit
+          in: query
+          type: string
+          description: Temperature unit for readings.
+    - name: tempsensor-instance}.json
+      path: /tempsensor/{instance}.json
+      operations:
+      - name: gettemperaturesensor
+        method: GET
+        description: Get Temperature Sensor
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: instance
+          in: path
+          type: integer
+          description: Temperature sensor instance number.
+          required: true
+        - name: tempUnit
+          in: query
+          type: string
+  exposes:
+  - type: rest
+    namespace: teledyne-flir-camera-rest-measurements-rest
+    port: 8080
+    description: REST adapter for Teledyne FLIR Camera REST API — Measurements. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/box/instance-json
+      name: box-instance-json
+      description: REST surface for box-instance}.json.
+      operations:
+      - method: GET
+        name: getboxmeasurement
+        description: Get Box Measurement
+        call: teledyne-flir-camera-rest-measurements.getboxmeasurement
+        with:
+          instance: rest.instance
+          tempUnit: rest.tempUnit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/line/instance-json
+      name: line-instance-json
+      description: REST surface for line-instance}.json.
+      operations:
+      - method: GET
+        name: getlinemeasurement
+        description: Get Line Measurement
+        call: teledyne-flir-camera-rest-measurements.getlinemeasurement
+        with:
+          instance: rest.instance
+          tempUnit: rest.tempUnit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/spot/instance-json
+      name: spot-instance-json
+      description: REST surface for spot-instance}.json.
+      operations:
+      - method: GET
+        name: getspotmeasurement
+        description: Get Spot Measurement
+        call: teledyne-flir-camera-rest-measurements.getspotmeasurement
+        with:
+          instance: rest.instance
+          pretty: rest.pretty
+          tempUnit: rest.tempUnit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tempsensor/instance-json
+      name: tempsensor-instance-json
+      description: REST surface for tempsensor-instance}.json.
+      operations:
+      - method: GET
+        name: gettemperaturesensor
+        description: Get Temperature Sensor
+        call: teledyne-flir-camera-rest-measurements.gettemperaturesensor
+        with:
+          instance: rest.instance
+          tempUnit: rest.tempUnit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: teledyne-flir-camera-rest-measurements-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Teledyne FLIR Camera REST API — Measurements. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: get-box-measurement
+      description: Get Box Measurement
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: teledyne-flir-camera-rest-measurements.getboxmeasurement
+      with:
+        instance: tools.instance
+        tempUnit: tools.tempUnit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-line-measurement
+      description: Get Line Measurement
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: teledyne-flir-camera-rest-measurements.getlinemeasurement
+      with:
+        instance: tools.instance
+        tempUnit: tools.tempUnit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-spot-measurement
+      description: Get Spot Measurement
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: teledyne-flir-camera-rest-measurements.getspotmeasurement
+      with:
+        instance: tools.instance
+        pretty: tools.pretty
+        tempUnit: tools.tempUnit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-temperature-sensor
+      description: Get Temperature Sensor
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: teledyne-flir-camera-rest-measurements.gettemperaturesensor
+      with:
+        instance: tools.instance
+        tempUnit: tools.tempUnit
+      outputParameters:
+      - type: object
+        mapping: $.
