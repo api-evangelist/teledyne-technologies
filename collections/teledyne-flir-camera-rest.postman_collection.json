@@ -1,0 +1,822 @@
+{
+  "item": [
+    {
+      "id": "08267afd-5f63-4596-ba39-e0afd031a3d6",
+      "name": "Images",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "610e394c-3851-4b3f-83b7-2e30567f57c6",
+          "name": "Get Current Image",
+          "request": {
+            "name": "Get Current Image",
+            "description": {
+              "content": "Retrieve the current thermal image from the camera in the specified format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "image",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "imgformat",
+                  "value": "JPEG",
+                  "description": "Image format to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "width",
+                  "value": "<integer>",
+                  "description": "Output image width in pixels."
+                },
+                {
+                  "disabled": false,
+                  "key": "height",
+                  "value": "<integer>",
+                  "description": "Output image height in pixels."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "IP address of the FLIR automation camera on the local network.",
+                  "type": "any",
+                  "value": "{{cameraIp}}",
+                  "key": "cameraIp"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/jpeg"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62665baf-80c9-4aa2-b5e6-d9288fc4b236",
+              "name": "Current camera image.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "image",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "imgformat",
+                      "value": "JPEG"
+                    },
+                    {
+                      "key": "width",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "height",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IP address of the FLIR automation camera on the local network.",
+                      "type": "any",
+                      "value": "{{cameraIp}}",
+                      "key": "cameraIp"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/jpeg"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "image/jpeg"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9930bb7d-2173-4ad7-b739-e22071347d93",
+              "name": "Camera not accessible.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "image",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "imgformat",
+                      "value": "JPEG"
+                    },
+                    {
+                      "key": "width",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "height",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IP address of the FLIR automation camera on the local network.",
+                      "type": "any",
+                      "value": "{{cameraIp}}",
+                      "key": "cameraIp"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "117af145-3bdb-4422-b723-0aa1002be7d3",
+      "name": "Measurements",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e911f0a3-ba6b-42cf-aa40-6053ab760c69",
+          "name": "Get Spot Measurement",
+          "request": {
+            "name": "Get Spot Measurement",
+            "description": {
+              "content": "Retrieve temperature measurement data for a specific spot ROI instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "spot",
+                "{{instance}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "<boolean>",
+                  "description": "Format JSON response with indentation."
+                },
+                {
+                  "disabled": false,
+                  "key": "tempUnit",
+                  "value": "C",
+                  "description": "Temperature unit for readings."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "IP address of the FLIR automation camera on the local network.",
+                  "type": "any",
+                  "value": "{{cameraIp}}",
+                  "key": "cameraIp"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c50e930-03ca-4cb0-bd32-bc2bb7e39faf",
+              "name": "Spot temperature measurement data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "spot",
+                    "{{instance}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "tempUnit",
+                      "value": "C"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IP address of the FLIR automation camera on the local network.",
+                      "type": "any",
+                      "value": "{{cameraIp}}",
+                      "key": "cameraIp"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"temperature\": 2126.0277395678595,\n  \"unit\": \"string\",\n  \"x\": 196,\n  \"y\": 6064,\n  \"timestamp\": \"1955-07-13T08:15:04.997Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d9aab69-e997-49b1-b319-5b9ec9e21b58",
+          "name": "Get Box Measurement",
+          "request": {
+            "name": "Get Box Measurement",
+            "description": {
+              "content": "Retrieve temperature statistics for a rectangular region of interest.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "box",
+                "{{instance}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tempUnit",
+                  "value": "C",
+                  "description": "Temperature unit."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "IP address of the FLIR automation camera on the local network.",
+                  "type": "any",
+                  "value": "{{cameraIp}}",
+                  "key": "cameraIp"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be1a6139-2ca4-45cf-aabe-03049947af7f",
+              "name": "Box region of interest temperature statistics.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "box",
+                    "{{instance}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tempUnit",
+                      "value": "C"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IP address of the FLIR automation camera on the local network.",
+                      "type": "any",
+                      "value": "{{cameraIp}}",
+                      "key": "cameraIp"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"max\": 3550.114209673889,\n  \"min\": 1509.657056426814,\n  \"avg\": 9016.47764543988,\n  \"unit\": \"string\",\n  \"area\": {\n    \"x\": 9699,\n    \"y\": 9035,\n    \"width\": 5006,\n    \"height\": 76\n  },\n  \"timestamp\": \"2021-11-19T11:40:43.027Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "897c9ed0-5175-4e05-899e-5564a8042197",
+          "name": "Get Line Measurement",
+          "request": {
+            "name": "Get Line Measurement",
+            "description": {
+              "content": "Retrieve temperature measurements along a line ROI.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "line",
+                "{{instance}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tempUnit",
+                  "value": "C"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "IP address of the FLIR automation camera on the local network.",
+                  "type": "any",
+                  "value": "{{cameraIp}}",
+                  "key": "cameraIp"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c607e654-60a2-4829-9a3f-6e792267d4c1",
+              "name": "Line region of interest temperature profile.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "line",
+                    "{{instance}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tempUnit",
+                      "value": "C"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IP address of the FLIR automation camera on the local network.",
+                      "type": "any",
+                      "value": "{{cameraIp}}",
+                      "key": "cameraIp"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"max\": 7501.034557208488,\n  \"min\": 6125.526141244632,\n  \"avg\": 5080.782728769521,\n  \"unit\": \"string\",\n  \"points\": [\n    5244.912292402995,\n    527.7075848858149\n  ],\n  \"timestamp\": \"1947-02-10T20:03:52.580Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fc55964-0aab-4013-9946-5d60b13ead6e",
+          "name": "Get Temperature Sensor",
+          "request": {
+            "name": "Get Temperature Sensor",
+            "description": {
+              "content": "Retrieve data from an internal temperature sensor instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tempsensor",
+                "{{instance}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tempUnit",
+                  "value": "C"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "IP address of the FLIR automation camera on the local network.",
+                  "type": "any",
+                  "value": "{{cameraIp}}",
+                  "key": "cameraIp"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94e0aa0f-007f-413c-b657-2ea9b3d74411",
+              "name": "Temperature sensor data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tempsensor",
+                    "{{instance}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tempUnit",
+                      "value": "C"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IP address of the FLIR automation camera on the local network.",
+                      "type": "any",
+                      "value": "{{cameraIp}}",
+                      "key": "cameraIp"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"instance\": 7401,\n  \"name\": \"string\",\n  \"temperature\": 3141.5026902943455,\n  \"unit\": \"string\",\n  \"timestamp\": \"1971-04-28T23:39:08.528Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e842ed0e-ce9d-4faa-8951-1f5a02a8867c",
+      "name": "Alarms",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "87578189-347f-49bc-ac61-af380057ebae",
+          "name": "Get All Alarms",
+          "request": {
+            "name": "Get All Alarms",
+            "description": {
+              "content": "Retrieve the current state of all configured alarm conditions on the camera.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alarms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "IP address of the FLIR automation camera on the local network.",
+                  "type": "any",
+                  "value": "{{cameraIp}}",
+                  "key": "cameraIp"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8cdd7310-5a0f-42b5-9576-1cdf03da99a9",
+              "name": "All camera alarm states.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alarms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IP address of the FLIR automation camera on the local network.",
+                      "type": "any",
+                      "value": "{{cameraIp}}",
+                      "key": "cameraIp"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alarms\": [\n    {\n      \"instance\": 2573,\n      \"name\": \"string\",\n      \"state\": \"active\",\n      \"triggered\": false,\n      \"threshold\": 2449.3669180051625,\n      \"unit\": \"string\",\n      \"associatedROI\": \"string\"\n    },\n    {\n      \"instance\": 1514,\n      \"name\": \"string\",\n      \"state\": \"active\",\n      \"triggered\": false,\n      \"threshold\": 1324.158547139096,\n      \"unit\": \"string\",\n      \"associatedROI\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86d10406-d7ed-47c8-8946-68fa69187e61",
+          "name": "Get Alarm",
+          "request": {
+            "name": "Get Alarm",
+            "description": {
+              "content": "Retrieve the state of a specific alarm instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alarm",
+                "{{instance}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "IP address of the FLIR automation camera on the local network.",
+                  "type": "any",
+                  "value": "{{cameraIp}}",
+                  "key": "cameraIp"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd30112d-81da-4fa1-8ac0-3dd1557dd778",
+              "name": "Alarm state data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alarm",
+                    "{{instance}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "IP address of the FLIR automation camera on the local network.",
+                      "type": "any",
+                      "value": "{{cameraIp}}",
+                      "key": "cameraIp"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"instance\": 1197,\n  \"name\": \"string\",\n  \"state\": \"inactive\",\n  \"triggered\": false,\n  \"threshold\": 3976.4667564937326,\n  \"unit\": \"string\",\n  \"associatedROI\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "IP address of the FLIR automation camera on the local network.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "192.168.0.100",
+      "key": "cameraIp"
+    },
+    {
+      "type": "string",
+      "value": "http://{{cameraIp}}/api",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Alarm instance number.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "instance"
+    }
+  ],
+  "info": {
+    "_postman_id": "3ead411e-23dd-47d7-8ed6-7c9f4441dfbd",
+    "name": "Teledyne FLIR Camera REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Teledyne FLIR Camera REST API provides programmatic access to FLIR automation cameras (A50/A70, A400/A500/A700, Ax8 series) for retrieving thermal images, temperature measurements, region of interest (ROI) data, alarm states, and camera configuration. The API is accessed directly on the camera's local IP address. Supports industrial process monitoring, predictive maintenance, building inspection, and automated quality control.",
+      "type": "text/plain"
+    }
+  }
+}

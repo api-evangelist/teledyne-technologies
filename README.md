@@ -1,157 +1,133 @@
 # Teledyne Technologies (teledyne-technologies)
 
-Teledyne Technologies Incorporated is a leading provider of sophisticated digital imaging products and software, instrumentation, aerospace and defense electronics, and engineered systems. Key subsidiaries include Teledyne FLIR (thermal imaging), Teledyne LeCroy (oscilloscopes and protocol analyzers), Teledyne Imaging (scientific cameras), and Teledyne API (air quality instruments). Teledyne FLIR provides REST APIs for thermal automation cameras and SDKs for machine vision cameras.
+Teledyne Technologies Incorporated is a leading provider of sophisticated digital imaging products and software, instrumentation, aerospace and defense electronics, and engineered systems. Headquartered in Thousand Oaks, California, Teledyne serves the defense, commercial, and industrial markets. Key subsidiaries include Teledyne FLIR (thermal imaging cameras and systems), Teledyne LeCroy (oscilloscopes and protocol analyzers), Teledyne Imaging (scientific and industrial cameras), and Teledyne API (air quality monitoring instruments). Teledyne FLIR provides REST APIs and SDKs for thermal camera integration, while Teledyne LeCroy provides ActiveDSO and VISA-based automation APIs for test and measurement instruments.
 
-**URL:** [https://raw.githubusercontent.com/api-evangelist/teledyne-technologies/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/teledyne-technologies/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/teledyne-technologies/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/teledyne-technologies/refs/heads/main/apis.yml)
 
 ## Scope
 
 - **Type:** Index
-- **Fortune:** Fortune 500
 
-## Tags:
+## Tags
 
- - Aerospace, Defense, Digital Imaging, Instrumentation, Test and Measurement, Thermal Imaging
+- Aerospace
+- Defense
+- Digital Imaging
+- Instrumentation
+- Thermal Imaging
+- Test and Measurement
+- Fortune 500
 
 ## Timestamps
 
 - **Created:** 2026-03-24
-- **Modified:** 2026-05-03
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Teledyne FLIR Camera REST API
 
-REST API for FLIR automation cameras (A50/A70, A400/A500/A700, Ax8) - thermal images, ROI measurements, alarm monitoring.
+Teledyne FLIR provides REST API access for automation cameras (A50/A70, A400/A500/A700, Ax8 series). The API enables retrieval of thermal images, region of interest (ROI) data, alarm data, and camera configuration. Endpoints return radiometric JPEG images and JSON data for temperature measurements across spots, boxes, lines, polylines, and delta measurements. Used for industrial process monitoring, building inspection, and predictive maintenance applications. A Swagger/OpenAPI JSON specification is available from the camera's local web server.
 
-**Human URL:** [https://www.flir.com/support-center/Instruments/restful-api-exercise/](https://www.flir.com/support-center/Instruments/restful-api-exercise/)
+- **Human URL:** [https://www.flir.com/support-center/Instruments/restful-api-exercise/](https://www.flir.com/support-center/Instruments/restful-api-exercise/)
+- **Base URL:** `http://{camera_ip}/api`
 
-**Base URL:** `http://{camera_ip}/api`
+#### Tags
 
-#### Tags:
-
- - Camera, Industrial, Machine Vision, REST API, Thermal Imaging
+- Thermal Imaging
+- Camera
+- REST API
+- Industrial
+- Machine Vision
 
 #### Properties
 
 - [Documentation](https://www.flir.com/support-center/Instruments/restful-api-exercise/)
-- [OpenAPI](openapi/teledyne-flir-camera-rest-openapi.yml)
-- [JSONSchema](json-schema/teledyne-flir-measurement-schema.json)
-- [JSONSchema](json-schema/teledyne-flir-alarm-schema.json)
+- [OpenAPI](openapi/teledyne-flir-camera-rest-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/teledyne-flir-camera-rest.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/teledyne-flir-camera-rest.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [JSON Schema](json-schema/teledyne-flir-measurement-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](json-schema/teledyne-flir-alarm-schema.json) — [JSON Schema](https://json-schema.org/specification)
 
 ### Teledyne FLIR Spinnaker SDK
 
-Machine vision camera SDK for USB3/GigE cameras in C++, C#, Python, and Java.
+The Spinnaker SDK provides programmatic control of Teledyne FLIR and DALSA machine vision cameras over USB3, GigE, 5GigE, and 10GigE interfaces. Supports C++, C#, Python, and Java with a cross-platform API for camera discovery, configuration, image acquisition, and processing. Includes SpinView GUI for camera exploration and real-time viewing. Used for factory automation, quality inspection, and scientific imaging applications.
 
-**Human URL:** [https://www.flir.com/support/browse/camera-cores--components/machine-vision-cameras/sdks](https://www.flir.com/support/browse/camera-cores--components/machine-vision-cameras/sdks)
+- **Human URL:** [https://www.flir.com/support/browse/camera-cores--components/machine-vision-cameras/sdks](https://www.flir.com/support/browse/camera-cores--components/machine-vision-cameras/sdks)
+- **Base URL:** `https://www.flir.com`
 
-#### Tags:
+#### Tags
 
- - Image Acquisition, Industrial Automation, Machine Vision, SDK
+- Machine Vision
+- Camera
+- SDK
+- Industrial Automation
+- Image Acquisition
 
 #### Properties
 
 - [Documentation](https://www.flir.com/support/browse/camera-cores--components/machine-vision-cameras/sdks)
 - [SDK](https://www.flir.com/support/browse/camera-cores--components/machine-vision-cameras/sdks)
-- [GitHub](https://github.com/Teledyne-MV/Spinnaker-Examples)
+- [Git Hub](https://github.com/Teledyne-MV/Spinnaker-Examples)
+- [Postman Collection](collections/teledyne-flir-camera-rest.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/teledyne-flir-camera-rest.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Teledyne FLIR Mobile SDK
 
-iOS/Android SDK for mobile applications integrating FLIR thermal cameras.
+The FLIR Mobile SDK enables iOS and Android developers to build mobile applications that integrate thermal imaging capabilities from Teledyne FLIR professional thermal cameras. Supports data collection from connected thermal cameras and metering devices. Available through FLIR's Developer Program with approved access. Includes an App Gallery for showcasing third-party thermal imaging applications.
 
-**Human URL:** [https://www.flir.com/developer/mobile-sdk/](https://www.flir.com/developer/mobile-sdk/)
+- **Human URL:** [https://www.flir.com/developer/mobile-sdk/](https://www.flir.com/developer/mobile-sdk/)
+- **Base URL:** `https://www.flir.com/developer`
 
-#### Tags:
+#### Tags
 
- - Android, Developer Program, iOS, Mobile SDK, Thermal Imaging
+- Mobile SDK
+- iOS
+- Android
+- Thermal Imaging
+- Developer Program
 
 #### Properties
 
 - [Documentation](https://www.flir.com/developer/mobile-sdk/)
-- [DeveloperPortal](https://www.flir.com/developer/mobile-sdk/)
+- [Developer Portal](https://www.flir.com/developer/mobile-sdk/)
+- [Postman Collection](collections/teledyne-flir-camera-rest.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/teledyne-flir-camera-rest.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Teledyne LeCroy ActiveDSO API
 
-Remote automation API for MAUI oscilloscopes via SCPI, VISA, and ActiveX/COM.
+ActiveDSO is Teledyne LeCroy's ActiveX/COM control enabling remote automation of MAUI-based oscilloscopes from Windows applications via SCPI commands, VISA drivers, Ethernet (ENET), GPIB, and USBTMC interfaces. Supports Python, C++, C#, LabVIEW, and MATLAB automation. Used for automated test sequences, waveform capture, protocol analysis, and measurement reporting in test and measurement workflows.
 
-**Human URL:** [https://www.teledynelecroy.com/support/techlib/programmingexamples.aspx](https://www.teledynelecroy.com/support/techlib/programmingexamples.aspx)
+- **Human URL:** [https://www.teledynelecroy.com/support/techlib/programmingexamples.aspx](https://www.teledynelecroy.com/support/techlib/programmingexamples.aspx)
+- **Base URL:** `https://www.teledynelecroy.com`
 
-#### Tags:
+#### Tags
 
- - Automation, Oscilloscope, SCPI, Test and Measurement, VISA
+- Oscilloscope
+- Test and Measurement
+- Automation
+- SCPI
+- VISA
 
 #### Properties
 
 - [Documentation](https://www.teledynelecroy.com/support/techlib/programmingexamples.aspx)
 - [Documentation](https://cdn.teledynelecroy.com/files/manuals/activedso-developers-guide.pdf)
-
-## Artifacts
-
-### OpenAPI Specifications
-
-| File | Description |
-|---|---|
-| [teledyne-flir-camera-rest-openapi.yml](openapi/teledyne-flir-camera-rest-openapi.yml) | FLIR Camera REST API - images, ROI measurements, alarms |
-
-### JSON Schemas
-
-| File | Description |
-|---|---|
-| [teledyne-flir-measurement-schema.json](json-schema/teledyne-flir-measurement-schema.json) | Schema for spot and box temperature measurement objects |
-| [teledyne-flir-alarm-schema.json](json-schema/teledyne-flir-alarm-schema.json) | Schema for FLIR camera alarm objects |
-
-### JSON Structure
-
-| File | Description |
-|---|---|
-| [teledyne-flir-measurement-structure.json](json-structure/teledyne-flir-measurement-structure.json) | Field documentation for measurement objects |
-
-### JSON-LD Context
-
-| File | Description |
-|---|---|
-| [teledyne-technologies-context.jsonld](json-ld/teledyne-technologies-context.jsonld) | Linked data context mapping FLIR terms to SOSA/QUDT/schema.org |
-
-### Examples
-
-| File | Description |
-|---|---|
-| [teledyne-get-spot-measurement-example.json](examples/teledyne-get-spot-measurement-example.json) | Example request/response for spot temperature measurement |
-| [teledyne-get-box-measurement-example.json](examples/teledyne-get-box-measurement-example.json) | Example request/response for box ROI measurement |
-| [teledyne-get-all-alarms-example.json](examples/teledyne-get-all-alarms-example.json) | Example request/response for alarm states |
-
-### Spectral Rules
-
-| File | Description |
-|---|---|
-| [teledyne-technologies-rules.yml](rules/teledyne-technologies-rules.yml) | Spectral ruleset for Teledyne API conventions |
-
-### Naftiko Capabilities
-
-| File | Description |
-|---|---|
-| [capabilities/industrial-thermal-monitoring.yaml](capabilities/industrial-thermal-monitoring.yaml) | Industrial thermal monitoring workflow (6 MCP tools) |
-| [capabilities/shared/flir-camera-rest.yaml](capabilities/shared/flir-camera-rest.yaml) | Shared FLIR Camera REST API consumed definition |
-
-### Vocabulary
-
-| File | Description |
-|---|---|
-| [teledyne-technologies-vocabulary.yml](vocabulary/teledyne-technologies-vocabulary.yml) | Domain vocabulary for Teledyne thermal imaging and instrumentation |
+- [Postman Collection](collections/teledyne-flir-camera-rest.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/teledyne-flir-camera-rest.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
 - [Website](https://www.teledyne.com/en-us)
-- [FLIR Developer Program](https://www.flir.com/developer/mobile-sdk/)
-- [Teledyne FLIR GitHub](https://github.com/FLIR)
-- [Teledyne Machine Vision GitHub](https://github.com/Teledyne-MV)
-- [Teledyne LeCroy](https://www.teledynelecroy.com/)
-- [Teledyne Imaging](https://www.teledyneimaging.com/)
-- [Teledyne API](https://www.teledyne-api.com/en-us)
+- [Developer Portal](https://www.flir.com/developer/mobile-sdk/)
+- [Git Hub](https://github.com/FLIR)
+- [Git Hub](https://github.com/Teledyne-MV)
+- [Website](https://www.teledynelecroy.com/)
+- [Website](https://www.teledyneimaging.com/)
+- [Website](https://www.teledyne-api.com/en-us)
 - [LinkedIn](https://www.linkedin.com/company/teledyne-technologies)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com
