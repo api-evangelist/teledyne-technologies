@@ -111,6 +111,8 @@ apis:
       - type: Documentation
         url: https://cdn.teledynelecroy.com/files/manuals/activedso-developers-guide.pdf
 common:
+  - type: DomainSecurity
+    url: security/teledyne-technologies-domain-security.yml
   - url: https://www.teledyne.com/en-us
     name: Teledyne Technologies
     type: Website
