@@ -1,0 +1,63 @@
+openapi: 3.0.3
+info:
+  title: Teledyne FLIR Camera REST Alarms Images API
+  description: The Teledyne FLIR Camera REST API provides programmatic access to FLIR automation cameras (A50/A70, A400/A500/A700, Ax8 series) for retrieving thermal images, temperature measurements, region of interest (ROI) data, alarm states, and camera configuration. The API is accessed directly on the camera's local IP address. Supports industrial process monitoring, predictive maintenance, building inspection, and automated quality control.
+  version: 1.0.0
+  contact:
+    url: https://www.flir.com/support-center/Instruments/restful-api-exercise/
+  license:
+    name: Proprietary
+    url: https://www.flir.com/
+servers:
+- url: http://{cameraIp}/api
+  description: FLIR Camera REST API (local network access)
+  variables:
+    cameraIp:
+      default: 192.168.0.100
+      description: IP address of the FLIR automation camera on the local network.
+tags:
+- name: Images
+paths:
+  /image/current:
+    get:
+      operationId: getCurrentImage
+      summary: Get Current Image
+      description: Retrieve the current thermal image from the camera in the specified format.
+      tags:
+      - Images
+      parameters:
+      - name: imgformat
+        in: query
+        description: Image format to return.
+        required: false
+        schema:
+          type: string
+          enum:
+          - JPEG
+          - RJPEG
+          - FLAME
+          - VISIBLE
+          - FUSION
+          default: JPEG
+      - name: width
+        in: query
+        description: Output image width in pixels.
+        required: false
+        schema:
+          type: integer
+      - name: height
+        in: query
+        description: Output image height in pixels.
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Current camera image.
+          content:
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Camera not accessible.
