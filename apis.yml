@@ -9,7 +9,19 @@ description: >-
   REST APIs and SDKs for thermal camera integration, while Teledyne LeCroy provides ActiveDSO and VISA-based automation
   APIs for test and measurement instruments.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: enterprise
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/teledyne-technologies.png
 tags:
   - Aerospace
   - Defense
@@ -23,93 +35,117 @@ created: '2026-03-24'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: teledyne-technologies:flir-camera-rest-api
-    name: Teledyne FLIR Camera REST API
-    description: >-
-      Teledyne FLIR provides REST API access for automation cameras (A50/A70, A400/A500/A700, Ax8 series). The API
-      enables retrieval of thermal images, region of interest (ROI) data, alarm data, and camera configuration.
-      Endpoints return radiometric JPEG images and JSON data for temperature measurements across spots, boxes, lines,
-      polylines, and delta measurements. Used for industrial process monitoring, building inspection, and predictive
-      maintenance applications. A Swagger/OpenAPI JSON specification is available from the camera's local web server.
-    humanURL: https://www.flir.com/support-center/Instruments/restful-api-exercise/
-    baseURL: http://{camera_ip}/api
-    tags:
-      - Thermal Imaging
-      - Camera
-      - REST API
-      - Industrial
-      - Machine Vision
-    properties:
-      - type: Documentation
-        url: https://www.flir.com/support-center/Instruments/restful-api-exercise/
-      - type: OpenAPI
-        url: openapi/teledyne-flir-camera-rest-openapi.yml
-      - type: JSONSchema
-        url: json-schema/teledyne-flir-measurement-schema.json
-      - type: JSONSchema
-        url: json-schema/teledyne-flir-alarm-schema.json
-  - aid: teledyne-technologies:flir-spinnaker-sdk
-    name: Teledyne FLIR Spinnaker SDK
-    description: >-
-      The Spinnaker SDK provides programmatic control of Teledyne FLIR and DALSA machine vision cameras over USB3, GigE,
-      5GigE, and 10GigE interfaces. Supports C++, C#, Python, and Java with a cross-platform API for camera discovery,
-      configuration, image acquisition, and processing. Includes SpinView GUI for camera exploration and real-time
-      viewing. Used for factory automation, quality inspection, and scientific imaging applications.
-    humanURL: https://www.flir.com/support/browse/camera-cores--components/machine-vision-cameras/sdks
-    baseURL: https://www.flir.com
-    tags:
-      - Machine Vision
-      - Camera
-      - SDK
-      - Industrial Automation
-      - Image Acquisition
-    properties:
-      - type: Documentation
-        url: https://www.flir.com/support/browse/camera-cores--components/machine-vision-cameras/sdks
-      - type: SDKs
-        url: https://www.flir.com/support/browse/camera-cores--components/machine-vision-cameras/sdks
-      - type: GitHub
-        url: https://github.com/Teledyne-MV/Spinnaker-Examples
-  - aid: teledyne-technologies:flir-mobile-sdk
-    name: Teledyne FLIR Mobile SDK
-    description: >-
-      The FLIR Mobile SDK enables iOS and Android developers to build mobile applications that integrate thermal imaging
-      capabilities from Teledyne FLIR professional thermal cameras. Supports data collection from connected thermal
-      cameras and metering devices. Available through FLIR's Developer Program with approved access. Includes an App
-      Gallery for showcasing third-party thermal imaging applications.
-    humanURL: https://www.flir.com/developer/mobile-sdk/
-    baseURL: https://www.flir.com/developer
-    tags:
-      - Mobile SDK
-      - iOS
-      - Android
-      - Thermal Imaging
-      - Developer Program
-    properties:
-      - type: Documentation
-        url: https://www.flir.com/developer/mobile-sdk/
-      - type: DeveloperPortal
-        url: https://www.flir.com/developer/mobile-sdk/
-  - aid: teledyne-technologies:lecroy-activedso-api
-    name: Teledyne LeCroy ActiveDSO API
-    description: >-
-      ActiveDSO is Teledyne LeCroy's ActiveX/COM control enabling remote automation of MAUI-based oscilloscopes from
-      Windows applications via SCPI commands, VISA drivers, Ethernet (ENET), GPIB, and USBTMC interfaces. Supports
-      Python, C++, C#, LabVIEW, and MATLAB automation. Used for automated test sequences, waveform capture, protocol
-      analysis, and measurement reporting in test and measurement workflows.
-    humanURL: https://www.teledynelecroy.com/support/techlib/programmingexamples.aspx
-    baseURL: https://www.teledynelecroy.com
-    tags:
-      - Oscilloscope
-      - Test and Measurement
-      - Automation
-      - SCPI
-      - VISA
-    properties:
-      - type: Documentation
-        url: https://www.teledynelecroy.com/support/techlib/programmingexamples.aspx
-      - type: Documentation
-        url: https://cdn.teledynelecroy.com/files/manuals/activedso-developers-guide.pdf
+- aid: teledyne-technologies:flir-spinnaker-sdk
+  name: Teledyne FLIR Spinnaker SDK
+  description: >-
+    The Spinnaker SDK provides programmatic control of Teledyne FLIR and DALSA machine vision cameras
+    over USB3, GigE, 5GigE, and 10GigE interfaces. Supports C++, C#, Python, and Java with a cross-platform
+    API for camera discovery, configuration, image acquisition, and processing. Includes SpinView GUI
+    for camera exploration and real-time viewing. Used for factory automation, quality inspection, and
+    scientific imaging applications.
+  humanURL: https://www.flir.com/support/browse/camera-cores--components/machine-vision-cameras/sdks
+  baseURL: https://www.flir.com
+  tags:
+  - Machine Vision
+  - Camera
+  - SDK
+  - Industrial Automation
+  - Image Acquisition
+  properties:
+  - type: Documentation
+    url: https://www.flir.com/support/browse/camera-cores--components/machine-vision-cameras/sdks
+  - type: SDKs
+    url: https://www.flir.com/support/browse/camera-cores--components/machine-vision-cameras/sdks
+  - type: GitHub
+    url: https://github.com/Teledyne-MV/Spinnaker-Examples
+- aid: teledyne-technologies:flir-mobile-sdk
+  name: Teledyne FLIR Mobile SDK
+  description: >-
+    The FLIR Mobile SDK enables iOS and Android developers to build mobile applications that integrate
+    thermal imaging capabilities from Teledyne FLIR professional thermal cameras. Supports data collection
+    from connected thermal cameras and metering devices. Available through FLIR's Developer Program with
+    approved access. Includes an App Gallery for showcasing third-party thermal imaging applications.
+  humanURL: https://www.flir.com/developer/mobile-sdk/
+  baseURL: https://www.flir.com/developer
+  tags:
+  - Mobile SDK
+  - iOS
+  - Android
+  - Thermal Imaging
+  - Developer Program
+  properties:
+  - type: Documentation
+    url: https://www.flir.com/developer/mobile-sdk/
+  - type: DeveloperPortal
+    url: https://www.flir.com/developer/mobile-sdk/
+- aid: teledyne-technologies:lecroy-activedso-api
+  name: Teledyne LeCroy ActiveDSO API
+  description: >-
+    ActiveDSO is Teledyne LeCroy's ActiveX/COM control enabling remote automation of MAUI-based oscilloscopes
+    from Windows applications via SCPI commands, VISA drivers, Ethernet (ENET), GPIB, and USBTMC interfaces.
+    Supports Python, C++, C#, LabVIEW, and MATLAB automation. Used for automated test sequences, waveform
+    capture, protocol analysis, and measurement reporting in test and measurement workflows.
+  humanURL: https://www.teledynelecroy.com/support/techlib/programmingexamples.aspx
+  baseURL: https://www.teledynelecroy.com
+  tags:
+  - Oscilloscope
+  - Test and Measurement
+  - Automation
+  - SCPI
+  - VISA
+  properties:
+  - type: Documentation
+    url: https://www.teledynelecroy.com/support/techlib/programmingexamples.aspx
+  - type: Documentation
+    url: https://cdn.teledynelecroy.com/files/manuals/activedso-developers-guide.pdf
+- aid: teledyne-technologies:teledyne-technologies-alarms-api
+  name: Teledyne Technologies Alarms API
+  description: The Alarms API from Teledyne Technologies — 2 operation(s) for alarms.
+  humanURL: https://www.flir.com/support-center/Instruments/restful-api-exercise/
+  baseURL: http://{camera_ip}/api
+  tags:
+  - Alarms
+  properties:
+  - type: OpenAPI
+    url: openapi/teledyne-technologies-alarms-api-openapi.yml
+  - type: Documentation
+    url: https://www.flir.com/support-center/Instruments/restful-api-exercise/
+  - type: JSONSchema
+    url: json-schema/teledyne-flir-measurement-schema.json
+  - type: JSONSchema
+    url: json-schema/teledyne-flir-alarm-schema.json
+- aid: teledyne-technologies:teledyne-technologies-images-api
+  name: Teledyne Technologies Images API
+  description: The Images API from Teledyne Technologies — 1 operation(s) for images.
+  humanURL: https://www.flir.com/support-center/Instruments/restful-api-exercise/
+  baseURL: http://{camera_ip}/api
+  tags:
+  - Images
+  properties:
+  - type: OpenAPI
+    url: openapi/teledyne-technologies-images-api-openapi.yml
+  - type: Documentation
+    url: https://www.flir.com/support-center/Instruments/restful-api-exercise/
+  - type: JSONSchema
+    url: json-schema/teledyne-flir-measurement-schema.json
+  - type: JSONSchema
+    url: json-schema/teledyne-flir-alarm-schema.json
+- aid: teledyne-technologies:teledyne-technologies-measurements-api
+  name: Teledyne Technologies Measurements API
+  description: The Measurements API from Teledyne Technologies — 4 operation(s) for measurements.
+  humanURL: https://www.flir.com/support-center/Instruments/restful-api-exercise/
+  baseURL: http://{camera_ip}/api
+  tags:
+  - Measurements
+  properties:
+  - type: OpenAPI
+    url: openapi/teledyne-technologies-measurements-api-openapi.yml
+  - type: Documentation
+    url: https://www.flir.com/support-center/Instruments/restful-api-exercise/
+  - type: JSONSchema
+    url: json-schema/teledyne-flir-measurement-schema.json
+  - type: JSONSchema
+    url: json-schema/teledyne-flir-alarm-schema.json
 common:
   - type: AgenticAccess
     url: agentic-access/teledyne-technologies-agentic-access.yml
