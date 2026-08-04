@@ -1,0 +1,18 @@
+{
+  "provider": "teledyne-technologies",
+  "sources": [
+    "teledyne-technologies-alarms-api-openapi.yml",
+    "teledyne-technologies-images-api-openapi.yml",
+    "teledyne-technologies-measurements-api-openapi.yml"
+  ],
+  "outputs": [
+    "teledyne-technologies-alarms-api-openapi.yml",
+    "teledyne-technologies-images-api-openapi.yml",
+    "teledyne-technologies-measurements-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
