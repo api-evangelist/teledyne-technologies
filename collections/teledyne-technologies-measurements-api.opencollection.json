@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Teledyne FLIR Camera REST Alarms Measurements API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Measurements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Spot Measurement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{cameraIp}/api/spot/:instance.json",
+            "params": [
+              {
+                "name": "instance",
+                "value": "",
+                "type": "path",
+                "description": "Spot ROI instance number (1-indexed)."
+              },
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query",
+                "description": "Format JSON response with indentation."
+              },
+              {
+                "name": "tempUnit",
+                "value": "",
+                "type": "query",
+                "description": "Temperature unit for readings."
+              }
+            ]
+          },
+          "docs": "Retrieve temperature measurement data for a specific spot ROI instance."
+        },
+        {
+          "info": {
+            "name": "Get Box Measurement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{cameraIp}/api/box/:instance.json",
+            "params": [
+              {
+                "name": "instance",
+                "value": "",
+                "type": "path",
+                "description": "Box ROI instance number."
+              },
+              {
+                "name": "tempUnit",
+                "value": "",
+                "type": "query",
+                "description": "Temperature unit."
+              }
+            ]
+          },
+          "docs": "Retrieve temperature statistics for a rectangular region of interest."
+        },
+        {
+          "info": {
+            "name": "Get Line Measurement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{cameraIp}/api/line/:instance.json",
+            "params": [
+              {
+                "name": "instance",
+                "value": "",
+                "type": "path",
+                "description": "Line ROI instance number."
+              },
+              {
+                "name": "tempUnit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve temperature measurements along a line ROI."
+        },
+        {
+          "info": {
+            "name": "Get Temperature Sensor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{cameraIp}/api/tempsensor/:instance.json",
+            "params": [
+              {
+                "name": "instance",
+                "value": "",
+                "type": "path",
+                "description": "Temperature sensor instance number."
+              },
+              {
+                "name": "tempUnit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve data from an internal temperature sensor instance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

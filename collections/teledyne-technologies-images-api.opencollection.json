@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Teledyne FLIR Camera REST Alarms Images API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Current Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{cameraIp}/api/image/current",
+            "params": [
+              {
+                "name": "imgformat",
+                "value": "",
+                "type": "query",
+                "description": "Image format to return."
+              },
+              {
+                "name": "width",
+                "value": "",
+                "type": "query",
+                "description": "Output image width in pixels."
+              },
+              {
+                "name": "height",
+                "value": "",
+                "type": "query",
+                "description": "Output image height in pixels."
+              }
+            ]
+          },
+          "docs": "Retrieve the current thermal image from the camera in the specified format."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

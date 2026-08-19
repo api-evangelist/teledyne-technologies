@@ -1,0 +1,232 @@
+{
+  "item": [
+    {
+      "id": "b34cf1d6-4a3e-44fb-86cd-33304a9d971e",
+      "name": "Alarms",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1c02ce66-24f4-4ddf-bf65-05f06c5da924",
+          "name": "Get All Alarms",
+          "request": {
+            "name": "Get All Alarms",
+            "description": {
+              "content": "Retrieve the current state of all configured alarm conditions on the camera.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alarms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pretty",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "IP address of the FLIR automation camera on the local network.",
+                  "type": "any",
+                  "value": "{{cameraIp}}",
+                  "key": "cameraIp"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0089e02-e537-43ec-9b3a-78e1291c7045",
+              "name": "All camera alarm states.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alarms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pretty",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IP address of the FLIR automation camera on the local network.",
+                      "type": "any",
+                      "value": "{{cameraIp}}",
+                      "key": "cameraIp"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"alarms\": [\n    {\n      \"instance\": 4318,\n      \"name\": \"string\",\n      \"state\": \"acknowledged\",\n      \"triggered\": false,\n      \"threshold\": 1943.2682448902117,\n      \"unit\": \"string\",\n      \"associatedROI\": \"string\"\n    },\n    {\n      \"instance\": 1813,\n      \"name\": \"string\",\n      \"state\": \"inactive\",\n      \"triggered\": true,\n      \"threshold\": 729.2578639683734,\n      \"unit\": \"string\",\n      \"associatedROI\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8e79062-9201-44a0-b038-e1eb71125048",
+          "name": "Get Alarm",
+          "request": {
+            "name": "Get Alarm",
+            "description": {
+              "content": "Retrieve the state of a specific alarm instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alarm",
+                "{{instance}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "IP address of the FLIR automation camera on the local network.",
+                  "type": "any",
+                  "value": "{{cameraIp}}",
+                  "key": "cameraIp"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01b253cb-1531-4f05-9ecc-14575adcddc1",
+              "name": "Alarm state data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alarm",
+                    "{{instance}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "IP address of the FLIR automation camera on the local network.",
+                      "type": "any",
+                      "value": "{{cameraIp}}",
+                      "key": "cameraIp"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"instance\": 6856,\n  \"name\": \"string\",\n  \"state\": \"acknowledged\",\n  \"triggered\": true,\n  \"threshold\": 860.5525532829872,\n  \"unit\": \"string\",\n  \"associatedROI\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "IP address of the FLIR automation camera on the local network.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "192.168.0.100",
+      "key": "cameraIp"
+    },
+    {
+      "type": "string",
+      "value": "http://{{cameraIp}}/api",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Alarm instance number.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<integer>",
+      "key": "instance"
+    }
+  ],
+  "info": {
+    "_postman_id": "0e0f3849-aa72-4b85-a5ff-ccd7fd518315",
+    "name": "Teledyne FLIR Camera REST Alarms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Teledyne FLIR Camera REST API provides programmatic access to FLIR automation cameras (A50/A70, A400/A500/A700, Ax8 series) for retrieving thermal images, temperature measurements, region of interest (ROI) data, alarm states, and camera configuration. The API is accessed directly on the camera's local IP address. Supports industrial process monitoring, predictive maintenance, building inspection, and automated quality control.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "item": [
+    {
+      "id": "ea916497-bd62-40cc-a52e-1d77091250ea",
+      "name": "Images",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e243f016-5cac-4213-b616-6b9114fd593c",
+          "name": "Get Current Image",
+          "request": {
+            "name": "Get Current Image",
+            "description": {
+              "content": "Retrieve the current thermal image from the camera in the specified format.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "image",
+                "current"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "imgformat",
+                  "value": "JPEG",
+                  "description": "Image format to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "width",
+                  "value": "<integer>",
+                  "description": "Output image width in pixels."
+                },
+                {
+                  "disabled": false,
+                  "key": "height",
+                  "value": "<integer>",
+                  "description": "Output image height in pixels."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "IP address of the FLIR automation camera on the local network.",
+                  "type": "any",
+                  "value": "{{cameraIp}}",
+                  "key": "cameraIp"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "image/jpeg"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f228abff-2c11-440b-bb61-93ac4e38b321",
+              "name": "Current camera image.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "image",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "imgformat",
+                      "value": "JPEG"
+                    },
+                    {
+                      "key": "width",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "height",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IP address of the FLIR automation camera on the local network.",
+                      "type": "any",
+                      "value": "{{cameraIp}}",
+                      "key": "cameraIp"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "image/jpeg"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "image/jpeg"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "576666e1-e397-4545-96c7-e280c80bc784",
+              "name": "Camera not accessible.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "image",
+                    "current"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "imgformat",
+                      "value": "JPEG"
+                    },
+                    {
+                      "key": "width",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "height",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "IP address of the FLIR automation camera on the local network.",
+                      "type": "any",
+                      "value": "{{cameraIp}}",
+                      "key": "cameraIp"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "IP address of the FLIR automation camera on the local network.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "192.168.0.100",
+      "key": "cameraIp"
+    },
+    {
+      "type": "string",
+      "value": "http://{{cameraIp}}/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "03ec164e-a3d3-4de2-9ddb-79c7fc5a898f",
+    "name": "Teledyne FLIR Camera REST Alarms Images API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Teledyne FLIR Camera REST API provides programmatic access to FLIR automation cameras (A50/A70, A400/A500/A700, Ax8 series) for retrieving thermal images, temperature measurements, region of interest (ROI) data, alarm states, and camera configuration. The API is accessed directly on the camera's local IP address. Supports industrial process monitoring, predictive maintenance, building inspection, and automated quality control.",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Teledyne FLIR Camera REST Alarms API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Alarms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Alarms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{cameraIp}/api/alarms",
+            "params": [
+              {
+                "name": "pretty",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve the current state of all configured alarm conditions on the camera."
+        },
+        {
+          "info": {
+            "name": "Get Alarm",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{cameraIp}/api/alarm/:instance.json",
+            "params": [
+              {
+                "name": "instance",
+                "value": "",
+                "type": "path",
+                "description": "Alarm instance number."
+              }
+            ]
+          },
+          "docs": "Retrieve the state of a specific alarm instance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
