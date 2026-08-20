@@ -92,6 +92,12 @@ apis:
   - Test and Measurement
   - Automation
   - SCPI
+  - Visa
+  tags_raw:
+  - Oscilloscope
+  - Test and Measurement
+  - Automation
+  - SCPI
   - VISA
   properties:
   - type: Documentation
@@ -120,6 +126,8 @@ apis:
   humanURL: https://www.flir.com/support-center/Instruments/restful-api-exercise/
   baseURL: http://{camera_ip}/api
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
