@@ -103,7 +103,7 @@ apis:
   - Test and Measurement
   - Automation
   - SCPI
-  - VISA
+  - Visa
   tags_raw:
   - Oscilloscope
   - Test and Measurement
