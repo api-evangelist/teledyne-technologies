@@ -1,7 +1,9 @@
 ---
 title: Teledyne FLIR OEM Advances State of the Art in Infrared ...
 url: https://www.teledyne.com/en-us/news/Pages/teledyne-flir-oem-advances-state-of-the-art-in-infrared-imaging.aspx
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Teledyne Technologies" press release artificial intelligence'
 position: 1
 source: serpapi-google

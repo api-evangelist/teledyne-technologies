@@ -1,7 +1,9 @@
 ---
 title: Teledyne to Hold Investor Meetings
 url: https://www.teledyne.com/en-us/news/Pages/teledyne-to-hold-investor-meetings-20250902.aspx
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Teledyne Technologies" press release artificial intelligence'
 position: 3
 source: serpapi-google

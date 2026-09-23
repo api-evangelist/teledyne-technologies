@@ -1,7 +1,9 @@
 ---
 title: Innovation at every layer. Teledyne FLIR OEM delivers ...
 url: https://www.facebook.com/FLIR/posts/innovation-at-every-layerteledyne-flir-oem-delivers-industry-leading-ndaa-compli/1252638966900095/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Teledyne Technologies" press release artificial intelligence'
 position: 4
 source: serpapi-google

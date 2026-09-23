@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Teledyne FLIR Camera REST Alarms Images API
+  title: Teledyne FLIR Camera REST Images API
   description: The Teledyne FLIR Camera REST API provides programmatic access to FLIR automation cameras (A50/A70, A400/A500/A700, Ax8 series) for retrieving thermal images, temperature measurements, region of interest (ROI) data, alarm states, and camera configuration. The API is accessed directly on the camera's local IP address. Supports industrial process monitoring, predictive maintenance, building inspection, and automated quality control.
   version: 1.0.0
   contact:
