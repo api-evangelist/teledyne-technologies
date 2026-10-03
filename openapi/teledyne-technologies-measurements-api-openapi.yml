@@ -156,52 +156,6 @@ paths:
                 $ref: '#/components/schemas/TemperatureSensor'
 components:
   schemas:
-    TemperatureSensor:
-      type: object
-      description: Internal temperature sensor data.
-      properties:
-        instance:
-          type: integer
-        name:
-          type: string
-        temperature:
-          type: number
-          format: double
-        unit:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
-    LineMeasurement:
-      type: object
-      description: Temperature profile along a line ROI.
-      properties:
-        name:
-          type: string
-          description: Line ROI name.
-        max:
-          type: number
-          format: double
-          description: Maximum temperature along the line.
-        min:
-          type: number
-          format: double
-          description: Minimum temperature along the line.
-        avg:
-          type: number
-          format: double
-          description: Average temperature along the line.
-        unit:
-          type: string
-        points:
-          type: array
-          description: Temperature values at each point along the line.
-          items:
-            type: number
-            format: double
-        timestamp:
-          type: string
-          format: date-time
     BoxMeasurement:
       type: object
       description: Temperature statistics for a rectangular region of interest.
@@ -239,6 +193,36 @@ components:
         timestamp:
           type: string
           format: date-time
+    LineMeasurement:
+      type: object
+      description: Temperature profile along a line ROI.
+      properties:
+        name:
+          type: string
+          description: Line ROI name.
+        max:
+          type: number
+          format: double
+          description: Maximum temperature along the line.
+        min:
+          type: number
+          format: double
+          description: Minimum temperature along the line.
+        avg:
+          type: number
+          format: double
+          description: Average temperature along the line.
+        unit:
+          type: string
+        points:
+          type: array
+          description: Temperature values at each point along the line.
+          items:
+            type: number
+            format: double
+        timestamp:
+          type: string
+          format: date-time
     SpotMeasurement:
       type: object
       description: Temperature measurement data for a spot ROI.
@@ -263,3 +247,19 @@ components:
           type: string
           format: date-time
           description: Measurement timestamp.
+    TemperatureSensor:
+      type: object
+      description: Internal temperature sensor data.
+      properties:
+        instance:
+          type: integer
+        name:
+          type: string
+        temperature:
+          type: number
+          format: double
+        unit:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
