@@ -47,7 +47,7 @@ tags:
   - Fortune 500
 url: https://raw.githubusercontent.com/api-evangelist/teledyne-technologies/refs/heads/main/apis.yml
 created: '2026-03-24'
-modified: '2026-05-19'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: teledyne-technologies:flir-spinnaker-sdk
@@ -170,6 +170,8 @@ apis:
   - type: JSONSchema
     url: json-schema/teledyne-flir-alarm-schema.json
 common:
+  - url: https://www.teledyne.com/news/
+    type: Blog
   - type: AgenticAccess
     url: agentic-access/teledyne-technologies-agentic-access.yml
   - type: DomainSecurity
